@@ -27,5 +27,7 @@ localhost:8080
 ```
 
 DATABASE = postgres
+
 USER = postgres
+
 PASSWORD = postgres
