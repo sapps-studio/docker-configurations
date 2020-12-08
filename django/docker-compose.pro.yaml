@@ -1,0 +1,66 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: guitarlions
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+
+  django:
+    build: .
+    restart: always
+    entrypoint: /django-launcher.sh
+    volumes:
+      - .:/usr/src/app/
+    environment:
+      DEBUG: "False"
+      ALLOWED_HOSTS: ""
+      SECRET_KEY: "secret"
+      DB_HOST: db
+      DB_NAME: "guitarlions"
+      DB_USER: "postgres"
+      DB_PASSWORD: "postgres"
+      DB_PORT: "5432"
+      DOMAIN: ""
+      DOMAIN_URL: "https://"
+      STATIC_URL: "/static/"
+      MEDIA_URL: "/media/"
+      EMAIL_USE_TLS: True
+      EMAIL_HOST: ""
+      EMAIL_USE_TLS: "True"
+      EMAIL_PORT: "2525"
+      EMAIL_USER: ""
+      EMAIL_PASSWORD: ""
+
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  caddy:
+    image: caddy:alpine
+    restart: always
+    ports:
+        - 80:80
+        - 443:443
+    volumes:
+        - ./Caddyfile:/etc/caddy/Caddyfile
+        - .:/usr/src/app/
+    depends_on:
+      - django
+
+  gulp:
+    build: Dockerfiles/gulp
+    restart: always
+    command: gulp
+    volumes:
+        - .:/app/
+    depends_on:
+      - caddy
