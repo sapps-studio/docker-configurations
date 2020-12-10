@@ -14,7 +14,9 @@ services:
       - 5432:5432
 
   django:
-    build: Dockerfiles/django
+    build:
+      context: .
+      dockerfile: ./Dockerfiles/django/Dockerfile
     restart: always
     entrypoint: /django-launcher.sh
     volumes:
@@ -56,7 +58,9 @@ services:
       - django
 
   gulp:
-    build: Dockerfiles/gulp
+    build:
+      context: .
+      dockerfile: ./Dockerfiles/gulp/Dockerfile
     restart: always
     command: gulp dev
     ports:
