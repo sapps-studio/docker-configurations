@@ -16,7 +16,7 @@ services:
   django:
     build: .
     restart: always
-    entrypoint: /django-launcher.sh
+    entrypoint: /django-launcher.pro.sh
     volumes:
       - .:/usr/src/app/
     environment:
