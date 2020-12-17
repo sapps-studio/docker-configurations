@@ -18,4 +18,4 @@ python3 manage.py migrate
 
 # Start server
 echo "Starting server"
-daphne -b 0.0.0.0 -p 8000 asgi:application
+uvicorn --host 0.0.0.0 --port 8000 --reload asgi:application
