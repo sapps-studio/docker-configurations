@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: ./Dockerfiles/django/Dockerfile
     restart: always
-    entrypoint: /django-launcher.sh
+    entrypoint: /django-launcher.dev.sh
     volumes:
       - .:/usr/src/app/
     environment:
