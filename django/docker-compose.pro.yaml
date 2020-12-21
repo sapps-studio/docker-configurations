@@ -59,8 +59,6 @@ services:
     build: Dockerfiles/gulp
     restart: always
     command: gulp
-    ports:
-        - 3000:3000
     volumes:
         - .:/app/
     depends_on:
