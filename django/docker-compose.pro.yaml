@@ -10,7 +10,7 @@ services:
     environment:
       POSTGRES_DB: guitarlions
       POSTGRES_PASSWORD: postgres
-    ports:
+    expose:
       - 5432:5432
 
   django:
@@ -38,8 +38,7 @@ services:
       EMAIL_PORT: "2525"
       EMAIL_USER: ""
       EMAIL_PASSWORD: ""
-
-    ports:
+    expose:
       - 8000:8000
     depends_on:
       - db
@@ -60,6 +59,8 @@ services:
     build: Dockerfiles/gulp
     restart: always
     command: gulp
+     ports:
+        - 3000:3000
     volumes:
         - .:/app/
     depends_on:
