@@ -6,7 +6,7 @@ services:
     image: postgres
     restart: always
     volumes:
-      ../postgres_data:/var/lib/postgresql/data
+      - ./../postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: guitarlions
       POSTGRES_PASSWORD: postgres
@@ -52,6 +52,7 @@ services:
         - 443:443
     volumes:
         - ./Caddyfile:/etc/caddy/Caddyfile
+        - ./../caddy_data:/data
         - .:/usr/src/app/
     depends_on:
       - django
