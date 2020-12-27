@@ -1,5 +1,7 @@
 FROM debian:stable-slim
 
+ENV PYTHONUNBUFFERED: 1
+
 # set work directory
 WORKDIR /usr/src/app
 
