@@ -5,35 +5,52 @@ services:
   wordpress:
     image: wordpress
     restart: always
-    ports:
-      - 80:80
+    expose:
+      - 80
     environment:
       WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: root
+      WORDPRESS_DB_USER: wordpressuser
+      WORDPRESS_DB_PASSWORD: wordpresspass
       WORDPRESS_DB_NAME: wordpress
     volumes:
-      - ./wordpress:/var/www/html
+      - ./www:/var/www/html
+      - ./wordpress/wp-content:/var/www/html/wp-content
+    depends_on:
+      - db
 
   db:
-    ports:
-      - 3306:3306
-    image: mysql:5.7
+    image: mariadb
     restart: always
     environment:
       MYSQL_DATABASE: wordpress
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_USER: wordpressuser
+      MYSQL_PASSWORD: wordpresspass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - ./db:/var/lib/mysql
+    expose:
+      - 5432
 
-  adminer:
-    image: adminer
+  redis:
+    image: redis:alpine
+    expose:
+      - 6379
+    depends_on:
+      - wordpress
+
+  caddy:
+    image: caddy:alpine
     restart: always
     ports:
-      - 8080:8080
+        - 80:80
+        - 443:443
+    volumes:
+        - ./Caddyfile:/etc/caddy/Caddyfile
+        - ./caddy_data:/data
+    depends_on:
+      - wordpress
 
 volumes:
   wordpress:
   db:
+  caddy:
