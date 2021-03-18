@@ -10,11 +10,11 @@ Now open:
 
 ### Other domains
 
-Caddy: `http://api.localhost`.
-Gulp: `http://localhost:3000`.
-Django: `http://localhost:8000`.
-Mailhog: `http://localhost:8025`.
-Postgres: `localhost:5432`.
+- Caddy: `http://api.localhost`.
+- Gulp: `http://localhost:3000`.
+- Django: `http://localhost:8000`.
+- Mailhog: `http://localhost:8025`.
+- Postgres: `localhost:5432`.
 
 ### Bash Django
 
