@@ -1,22 +1,22 @@
 {
-  "name": "web-neokualitte",
+  "name": "web",
   "version": "1.0.0",
-  "description": "``` sh docker-compose -f docker-compose.dev.yaml up ```",
+  "description": "",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/sapps-studio/web-neokualitte.git"
+    "url": "git+ssh://git@gitlab.com/sapps-studio/....git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/sapps-studio/web-neokualitte/issues"
+    "url": "https://gitlab.com/sapps-studio/.../issues"
   },
-  "homepage": "https://gitlab.com/sapps-studio/web-neokualitte#readme",
+  "homepage": "https://gitlab.com/sapps-studio/...#readme",
   "dependencies": {
     "browser-sync": "^2.26.14",
     "gulp": "^4.0.2",
