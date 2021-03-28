@@ -1,14 +1,19 @@
-FROM node:lts-buster-slim
+FROM debian:unstable-slim
 
 # set work directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # install software
 RUN apt update
-# dependencies gulp-sass
-RUN apt install -y build-essential python2-dev python3-dev
+RUN apt -y upgrade
+# dependencies
+RUN apt install -y build-essential nodejs npm
+
 # gulp
 RUN npm install -g gulp-cli
+
+# Add package.json
+COPY package.json package.json
+
 # dependencies gulp
-RUN npm rebuild node-sass
-RUN npm i gulp browser-sync gulp-sourcemaps gulp-rename gulp-sass
+RUN npm i
