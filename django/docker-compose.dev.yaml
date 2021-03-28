@@ -67,7 +67,9 @@ services:
         - 3000:3000
         - 3001:3001
     volumes:
-        - .:/app/
+        - ./gulpfile.js:/usr/src/app/gulpfile.js
+        - ./assets:/usr/src/app/assets
+        - ./static:/usr/src/app/static
     depends_on:
       - caddy
 
