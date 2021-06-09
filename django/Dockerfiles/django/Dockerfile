@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 
 # install software
 RUN apt update
-RUN apt install -y build-essential cron python3-pip gettext
+RUN apt install -y build-essential sqlite3 python3-pip gettext
 
 # install dependencies
 RUN pip3 install --upgrade pip
